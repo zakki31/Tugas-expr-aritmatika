@@ -6,51 +6,57 @@ Anggota Kelompok
 Link Github : https://github.com/zakki31/TUGAS-PETRUK.git
 */
 
+#include <cmath>
+#include <cstdio>
+#include <vector>
 #include <iostream>
-#include <cstring>
+#include <algorithm>
 using namespace std;
 
-int main(){
-    string str,str1;
-    getline(cin, str);
-    int a = str.length();
+int main() {
+    string infix, str = "";
+    int len;
     
-    for(int i=0;i<a;i++){
-        if(isdigit(str[i])){
-            str1+=str[i];
-            if(!(isdigit(str[i+1]))){
-                str1+=' ';
+    getline(cin, infix);
+    
+    len = infix.size();
+    
+    for(int i=0; i<len; i++) {
+        if(isalnum(infix[i])) {
+            str += infix[i];
+            if(!(isalnum(infix[i+1])))
+                str += ' ';
+        }
+        else if(infix[i]=='-') {
+            if(isalnum(infix[i+1])) {
+                str += infix[i];
+                if(i!=0)
+                    str += ' ';
             }
-        
-        }else if (!(isdigit(str[i])) && str[i] != ' ')
-        {
-            str1 += str[i];
-            if (i == 0 && isdigit(str[i + 1]) && str[i] == '-')
-            {
-                str1 += "";
+            else if(infix[i+1]=='(') {
+                if(isalnum(infix[i-1])) {
+                    str += infix[i];
+                    str += ' ';
+                }
+                else {
+                    str += "-1 * ";
+                }
             }
-            else if (str[i] == '-' && str[i + 1] == '(' && isdigit(str[i - 2]))
-            {
-                str1 += "1 * ";
-            }
-            else if (str[i] == '-' && isdigit(str[i + 1]) && !(isdigit(str[i - 1])))
-            {
-                str1 += "1 * ";
-            }
-            else if (str[i] == '-' && str[i - 2] != ')' && str[i - 1] != ')' && str[i + 1] == '(' && !(isdigit(str[3 - 2])))
-            {
-                str1 += "1 * ";
-            }
-            else if (i == ((int)str.length()) - 1)
-            {
-                str1 += "";
-            }
-            else
-            {
-                str1 += " ";
+            else {
+                if(infix[i+1]!=' ')
+                    str += "-1";
+                else
+                    str += infix[i];
+                str += ' ';
             }
         }
-	}
-    cout << "Print : " << str1;
-
+        else {
+            if(infix[i]!=' ') {
+                str += infix[i];
+                str += ' ';
+            }
+        }
+    }
+    
+    cout <<"Print : " << str;
 }
