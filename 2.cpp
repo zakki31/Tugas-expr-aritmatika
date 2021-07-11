@@ -45,4 +45,22 @@ int main() {
                     str += "-1 * ";
                 }
             }
+          else {
+                if(infix[i+1]!=' ')
+                    str += "-1";
+                else
+                    str += infix[i];
+                str += ' ';
+            }
+        }
+        else {
+            if(infix[i]!=' ') {
+                str += infix[i];
+                str += ' ';
+            }
+        }
+    }
+    
+    cout <<"Print : " << str;
+}
             
