@@ -33,8 +33,36 @@ int putFirst(string X){
 bool large(string X, string Y)
 {
     int num1, num2;
-	
-	string temp;
+    num1 = putFirst(X);
+    num2 = putFirst(Y);
+    return num1 <= num2;
+}
+
+double run (double X, double Y, string n)
+{
+    if(n == "+")
+	{
+        return X+Y;
+    }
+    else if(n == "-")
+	{
+        return X-Y;
+    }
+    else if(n == "*")
+	{
+        return X*Y;
+    }
+    else if(n == "/")
+	{
+        return X/Y;
+    }
+    else if(n == "%")
+	{
+        return (int) X % (int) Y;
+    }
+    return 0;
+}
+string temp;
 vector <string> infix;
 vector <string> postfix;
 vector <string>::iterator iterator1;
@@ -173,33 +201,4 @@ int main()
     input();
     toPostfix();
     result();
-}
-    num1 = putFirst(X);
-    num2 = putFirst(Y);
-    return num1 <= num2;
-}
-
-double run (double X, double Y, string n)
-{
-    if(n == "+")
-	{
-        return X+Y;
-    }
-    else if(n == "-")
-	{
-        return X-Y;
-    }
-    else if(n == "*")
-	{
-        return X*Y;
-    }
-    else if(n == "/")
-	{
-        return X/Y;
-    }
-    else if(n == "%")
-	{
-        return (int) X % (int) Y;
-    }
-    return 0;
 }
